@@ -1,27 +1,32 @@
 import requests
 from bs4 import BeautifulSoup
 
-class tendenciasDiarias:
-    def __init__(self) -> None:    
-        url = 'https://github.com/trending?spoken_language_code=es' #link de la pagina a analizar
+class TendenciasModelo:
+    #metodo constructor
+    def __init__(self,url,) -> None:   
+        self.url = url 
+       
+             
+       
+    def obtenerTendencias(self,url):   
         respuesta = requests.get(url) #realiza una solicitud HTTP GET a la url
-
         if respuesta.status_code == 200: # comprueba si la solicitud fue exitosa (código de estado 200=OK)
             # parsea el contenido HTML con BeautifulSoup(se analiza para identificar las etiquetas, atributos y contenido dentro del documento)
             soup = BeautifulSoup(respuesta.text, 'html.parser')
-
+            #lista vacia para guardar los resultados
+            repositorios = []
             # buscar el atributo y la clase que contiene toda la información que queremos extraer 
             repositorio = soup.find_all('article', class_='Box-row')
 
             for articulo in repositorio:
-                # nombre y desarrolador con etiqueta h2 clase: 'h3 lh-condensed' 
+                # nombre y desarrollador con etiqueta h2 clase: 'h3 lh-condensed' 
                 repo = articulo.find('h2', class_='h3 lh-condensed')#find= buscar 
                 #guardo en la variable lo q contiene repo, lo paso a texto y elimino espacios en blanco  con strip
                 repo_nombre_completo = repo.text.strip()
-                # guardo del repo solo el desarrolador con la etiqueta span
-                desarrolador = repo.span.text.strip()
+                # guardo del repo solo el desarrollador con la etiqueta span
+                desarrollador = repo.span.text.strip()
                 # creo una variable donde elimino el nombre del desarrollador y queda solo el titulo
-                titulo_repo = repo_nombre_completo.replace(desarrolador, '').strip()
+                titulo_repo = repo_nombre_completo.replace(desarrollador, '').strip()
 
 
                 #descripción con p clase:'col-9 color-fg-muted my-1 pr-4'
@@ -43,21 +48,25 @@ class tendenciasDiarias:
                 
                 # encode= evitar errores al imprimir, codifica los caracteres en "utf-8"
                 titulo_repo=titulo_repo.encode("utf-8", "ignore").decode("utf-8")
-                desarrolador=desarrolador.encode("utf-8", "ignore").decode("utf-8")
+                desarrollador=desarrollador.encode("utf-8", "ignore").decode("utf-8")
                 descripcion=descripcion.encode("utf-8", "ignore").decode("utf-8")
                 lenguaje=lenguaje.encode("utf-8", "ignore").decode("utf-8")
                 estrellas=estrellas.encode("utf-8", "ignore").decode("utf-8")
                 forks=forks.encode("utf-8", "ignore").decode("utf-8")
                 
-                # imprimir
-                print(f'\nRepositorio: {titulo_repo}')
-                print(f'Desarrolador: {desarrolador}')
-                print(f'Descripción: {descripcion}')
-                print(f'Lenguaje de Programación: {lenguaje}')
-                print(f'Estrellas: {estrellas}'+' '*50+ f'  Clonados:{forks}\n')
-                print('-' * 100)   
+                # método append para agregar los diccionarios en la lista repositorio. 
+                # Cada elemento de la lista repositorios es un diccionario que contiene información sobre un repositorio
+                repositorios.append({
+                    'Repositorio': titulo_repo,
+                    'Desarrollador': desarrollador,
+                    'Descripción': descripcion,
+                    'Lenguaje de Programación': lenguaje,
+                    'Estrellas': estrellas,
+                    'Clonados': forks
+                })
+            #devuelve la lista completa de diccionarios
+            return repositorios
         else:
             print('Error al hacer la solicitud HTTP.')
-
-
-
+            
+    
