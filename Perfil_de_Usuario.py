@@ -13,9 +13,9 @@ if response.status_code == 200: #Después de recibir e interpretar un mensaje de
     soup = BeautifulSoup(response.text, 'html.parser') #transforma el ht,l en objetos 
     
     div= soup.find_all('div', class_='col-md-8 col-lg-12') #(nombre elemento,atributos o clases )
-    titulo = div.find_all('h3').text.strip() #El método strip() eliminar los espacios en blanco
-    fecha = div.find_all('p', class_='color-fg-muted f5').text.strip()
-    descripcion= div.find_all('p class="mb-3"').text.strip()
+    titulo = soup.find_all('h3', 'a data-analytics-event=' ).text.strip() #El método strip() eliminar los espacios en blanco
+    fecha = soup.find_all ('p', class_='color-fg-muted f5').text.strip()
+    descripcion= soup.find_all('p', class_="mb-3").text.strip()
    
     print (("Título:  ", titulo),("Fecha:   ", fecha), ("Descripción:  ", descripcion))
 else:
