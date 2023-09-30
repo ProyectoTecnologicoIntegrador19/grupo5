@@ -3,8 +3,7 @@ from bs4 import BeautifulSoup
 
 class TendenciasDeveloper:
     def __init__(self,url,) -> None:   
-        self.url = url
-       
+        self.url = url       
              
        
     def obtenerTendDeveloper(self,url):   
@@ -19,12 +18,12 @@ class TendenciasDeveloper:
                 nombre_completo = nombre.text.strip()
 
                 nombre_alias = articulo.find('p', class_='f4 text-normal mb-1')
-                alias = nombre_alias.text.strip() if nombre_alias else 'Sin descripción'
+                alias = nombre_alias.text.strip() if nombre_alias else 'Sin Alias'
 
                 nombre_repo = articulo.find('h1', class_='h4 lh-condensed')
                 repo = nombre_repo.text.strip() if nombre_repo else ''
 
-                breve_descrip=articulo.find('div', class_='f6 colour-fg-muted mt-1')
+                breve_descrip=articulo.find('div', class_='f6 color-fg-muted mt-1') 
                 descrip= breve_descrip.text.strip() if breve_descrip else ''
                                 
                 nombre_completo=nombre_completo.encode("utf-8", "ignore").decode("utf-8")
