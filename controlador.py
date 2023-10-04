@@ -1,6 +1,6 @@
+import developer
 import tendencias
 import perfil
-
 
 def listarTendenciasMensuales():
     # link de pagina a scrapear
@@ -47,6 +47,38 @@ def listarTendenciasDiarias():
         print(f'Estrellas: {t["Estrellas"]}' + ' ' *50 + f'Clonados: {t["Clonados"]}\n')
         print('-' * 100)
 
+#--------------------------------------------------------------------------------------------------------------------
+
+def listarTendDeveloperMensuales():
+        url= 'https://github.com/trending/developers?since=monthly'
+        listaRepositorios = developer.TendenciasDeveloper(url)
+        lista = listaRepositorios.obtenerTendDeveloper(url)
+        for t in lista:
+                print(f'\nNombre: {t["Nombre"]}')
+                print(f'Desarrollador: {t["Desarrollador"]}')
+                print(f'Título Repositorio: {t["Título Repositorio"]}')
+                print(f'Descripción Repositorio: {t["Descripción Repositorio"]}')           
+
+def listarTendDeveloperSemanales():
+        url='https://github.com/trending/developers?since=weekly'
+        listaRepositorios = developer.TendenciasDeveloper(url)
+        lista = listaRepositorios.obtenerTendDeveloper(url)
+        for t in lista:
+                print(f'\nNombre: {t["Nombre"]}')
+                print(f'Desarrollador: {t["Desarrollador"]}')
+                print(f'Título Repositorio: {t["Título Repositorio"]}')
+                print(f'Descripción Repositorio: {t["Descripción Repositorio"]}')  
+            
+def listarTendDeveloperDiarias():
+        url='https://github.com/trending/developers?since=daily'
+        listaRepositorios = developer.TendenciasDeveloper(url)
+        lista = listaRepositorios.obtenerTendDeveloper(url)
+        for t in lista:
+                print(f'\nNombre: {t["Nombre"]}')
+                print(f'Desarrollador: {t["Desarrollador"]}')
+                print(f'Título Repositorio: {t["Título Repositorio"]}')
+                print(f'Descripción Repositorio: {t["Descripción Repositorio"]}')  
+            
 #------------------------------------------------------------------------------------------------------------------------------------------------
 def listarInformacionPerfil():
     url = input('\nIngrese nombre de usuario de perfil de GitHub: ')
@@ -85,3 +117,5 @@ def listarInformacionPerfil():
     print('-' * 100)    
     print(f'\nNúmero de Contribuciones: {numero_contribuciones}\n')
        
+#----------------------------------------------------------------------------
+            
