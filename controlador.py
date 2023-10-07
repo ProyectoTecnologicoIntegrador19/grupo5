@@ -1,6 +1,7 @@
 import developer
 import tendencias
 import perfil
+import githubevents
 
 def listarTendenciasMensuales():
     # link de pagina a scrapear
@@ -116,6 +117,14 @@ def listarInformacionPerfil():
     
     print('-' * 100)    
     print(f'\nNúmero de Contribuciones: {numero_contribuciones}\n')
+    
+    
        
 #----------------------------------------------------------------------------
+
+def listarEvents():
+        url='https://github.com/events'
+        listaEventos = githubevents.events(url)
+        listaEventos.obtenerEvents(url)
+        
             
