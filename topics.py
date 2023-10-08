@@ -19,3 +19,4 @@ if eleccion == 1:
 if eleccion == 2:
     for desc in resultado: print(desc)
 else: print("error")
+
