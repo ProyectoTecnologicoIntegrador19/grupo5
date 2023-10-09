@@ -2,7 +2,7 @@ import controlador
 
 
 while True:
-        menu = input("""\nIngrese número: 1) Tendencias   2) Tendencias Developer   3) Perfil 4) Events  9) Salir \n     """)
+        menu = input("""\nIngrese número: 1) Tendencias   2) Tendencias Developer   3) Perfil 4) Events 5)Codigo 9) Salir \n     """)
         if menu == "1":#TENDENCIAS-----------------------------------------------------------------------------------------------------
             menuTendencias = input("""\nTendencias:  1) Mensual   2) Semanal   3) Diaria \n     """)
             if menuTendencias == "1": controlador.listarTendenciasMensuales ()#llama al archivo controlador y el metodo que que se necesita mostrar
@@ -17,6 +17,9 @@ while True:
             controlador.listarInformacionPerfil ()    
         elif menu == "4":
             controlador.listarEvents()
+        elif menu == "5":#CODE-----------------------------------------------------------------------------------------------------
+            controlador.listarInformacionCodigo ()    
+             
         
         elif menu == "9":#SALIR    
             print("\n OFF."); exit()
