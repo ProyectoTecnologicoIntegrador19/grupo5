@@ -2,7 +2,7 @@ import developer
 import tendencias
 import perfil
 import githubevents
-import codigo
+import topics
 
 def listarTendenciasMensuales():
     # link de pagina a scrapear
@@ -128,9 +128,12 @@ def listarEvents():
         listaEventos = githubevents.events(url)
         listaEventos.obtenerEvents(url)
 #----------------------------------------------------------------------------
-def listarInformacionCodigo():
-    url = input('\nIngrese el fragmento de codigo que esté buscando: ')
-    con = codigo.CodigoModelo(url)
-    resultado= con.obtenerInfoCode(url)
-    file_info, codigo_info, = resultado
+
+def listarTopics():
+        t=topics.TopicosModelo 
+        lista=t.obtener_datos("https://github.com/topics/")
+        print()
+        resultado, topicos = lista
+        for desc in resultado: print(desc)
+        for topic in topicos: print(topic)
             
