@@ -21,7 +21,7 @@ def imprimir_info(contributions):
         print(f"Información de contributions en la página:")
         for i, contribution in enumerate(contributions, start=1):
             print(f"{i}. Contribution: {contribution.text}")
-        print(f"Total de contributions encontradas: {len(contributions)}")
+        #print(f"Total de contributions encontradas: {len(contributions)}")
     else:
         print("No se encontraron contributions en la página.")
 
