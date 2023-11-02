@@ -27,7 +27,7 @@ while True:
         elif menu == "6":#CONTRIBUCIONES-----------------------------------------------------------------------------------------------------
             controlador.listarContributions()
              
-        elif menu == "9":#SALIR    
+        elif menu == "7":#SALIR    
             print("\n OFF."); exit()
         else: print("\nOpcion no valida")
         
