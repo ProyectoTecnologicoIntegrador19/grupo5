@@ -3,6 +3,7 @@ import tendencias
 import perfil
 import githubevents
 import topics
+import contributions
 
 def listarTendenciasMensuales():
     # link de pagina a scrapear
@@ -136,4 +137,13 @@ def listarTopics():
         resultado, topicos = lista
         for desc in resultado: print(desc)
         for topic in topicos: print(topic)
+        
+def listarContributions():
+        nombre = input('\nIngrese nombre de usuario de perfil de GitHub: ')
+        c=contributions.ContributionsModelo 
+        print()
+        cont = c.obtener_datos(nombre)
+        if contributions:
+            c.imprimir_info(cont)
+
             

@@ -1,6 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
-
+import pandas 
+ 
+# pip install requests
+# pip install BeautifulSoup
+# pip install pandas
+# pip install openpyxl
 
 class TendenciasModelo:
     # metodo constructor
@@ -70,7 +75,11 @@ class TendenciasModelo:
                     if len(repositorios) >= cantidad:
                         break
 
-             # devuelve la lista completa de diccionarios
+            df = pandas.DataFrame(repositorios)#dataFrame: es una estructura de datos en pandas, seria como hoja de calculo de excel
+            archivo = 'tendenciasExcel.xlsx'#nombre del excel
+            df.to_excel(archivo, index=False)#exporta el dataFrame a un archivo de excel
+            print(f"Datos exportados exitosamente a {archivo}")
             return repositorios
+           
         else:
             print('Error al hacer la solicitud HTTP.')
